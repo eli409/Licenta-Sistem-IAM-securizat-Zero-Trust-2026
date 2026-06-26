@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Verificare MFA</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    </head>
+    <body class="bg-light">
+        <div class="container mt-5">
+            <div class="card mx-auto shadow" style="max-width: 400px;">
+                <div class="card-body text-center">
+                    <div class="mb-4">
+                        <i class="bi bi-shield-lock-fill text-primary" style="font-size: 4rem;"></i>
+                    </div>
+                    <p>Introdu codul generat de aplicația <i>Google Authenticator</i> de pe telefonul personal.</p>
+                
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ category }}">{{ message }}</div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+
+                    <form method="POST">
+                        <input type="text" name="code" class="form-control mb-3" placeholder="Introdu codul de 6 cifre" required>
+                        <button type="submit" class="btn btn-primary w-100">Verifică</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
